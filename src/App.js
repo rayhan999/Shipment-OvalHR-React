@@ -6,7 +6,11 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import Home from "./Pages/Home";
+import Navbar from "./components/Navbar/Navbar";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import Details from "./Pages/Details";
+
+const Home = lazy(() => import('./Pages/Home'));
 
 function App() {
   return (
@@ -14,15 +18,16 @@ function App() {
       <Router>
         {/* <Toaster /> */}
         <Suspense 
-        // fallback={<LoadingSpinner />}
+        fallback={<LoadingSpinner />}
         >
+          <Navbar></Navbar>
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
-            {/* <PrivateRoute path="/dashboard/:panel">
-              <Dashboard adminLoading={adminLoading} />
-            </PrivateRoute> */}
+            <Route path="/shipments/:id">
+              <Details />
+            </Route>
           </Switch>
         </Suspense>
       </Router>

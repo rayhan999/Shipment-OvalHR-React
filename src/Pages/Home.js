@@ -6,7 +6,7 @@ import DataTable from '../components/DataTable/DataTable';
 const Home = () => {
     return (
         <div>
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
             <div className="container">
                 <DataTable></DataTable>
             </div>
