@@ -88,21 +88,28 @@ const Details = () => {
                         <th scope="row">Services</th>
                         <td>
                             <table className="table table-bordered">
-                                <tbody>
+                            <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                               
 
                                     {
-                                        Value.services && Value.services.map(car => (
-                                            <tr>
-                                                <th scope="row">Type</th>
-                                                <td>{car.type}</td>
+                                        Value.services && Value.services.map(service => (
+                                            <tbody>
+                                                <tr>
+                                                <td>{service.type}</td>
+                                                <td>{service.value}</td>
                                             </tr>
-
+                                            </tbody>
 
                                         ))
                                     }
 
 
-                                </tbody>
+                                
                             </table>
 
                         </td>
