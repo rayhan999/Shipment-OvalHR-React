@@ -54,22 +54,26 @@ const DataTable = () => {
         // console.log(InputName);
     }, [comments, InputName, totalItems, ItemsPerPage]);
 
-    const handleNameClick = async (comment,id) => {
+    const handleNameClick = async (comment, id) => {
         // console.log(InputName);
         // console.log(id);
-        const newData = { 
-            ...comment,
-            name: InputName
-        }
-        console.log("newdata",newData);
-       await axios.put(`${process.env.REACT_APP_API}/${id}`, newData)
-            .then(res => {
-                // setComments(res.data);
-                console.log(res.data);
-                setEditName(!EditName);
+        if (InputName === null) {
+            setEditName(!EditName);
+        } else {
+            const newData = {
+                ...comment,
+                name: InputName
+            }
+            // console.log("newdata",newData);
+            await axios.put(`${process.env.REACT_APP_API}/${id}`, newData)
+                .then(res => {
+                    // setComments(res.data);
+                    // console.log(res.data);
+                    setEditName(!EditName);
 
-            })
-            .catch(error => console.log(error.message))
+                })
+                .catch(error => console.log(error.message))
+        }
     }
 
     const commentsData = useMemo(() => {
@@ -134,7 +138,7 @@ const DataTable = () => {
         // onSorting(field, order);
         setSorting({ field, order })
     };
-    
+
 
     // const handleNameChange = (e) => setInputName({
     //     ...InputName,
@@ -174,13 +178,13 @@ const DataTable = () => {
                                     type="text"
                                     className="form-control"
                                     style={{ width: "240px" }}
-                                    placeholder="Search"
+                                    placeholder="Search by ID"
                                     value={search}
                                     onChange={e => onInputChange(e.target.value)}
                                 />
                             </div>
                         </div>
-                        <div class="table-responsive">
+                        <div className="table-responsive">
                             <table className="table table-striped table-bordered align-middle">
 
                                 <thead>
@@ -227,9 +231,7 @@ const DataTable = () => {
                                                             <div className="col-1 p-0">
                                                                 <FontAwesomeIcon
                                                                     icon={faCheckCircle}
-                                                                    // type="submit"
-                                                                    // onClick={() => { setEditName(!EditName); setIdforEditName(comment.id) }}
-                                                                    onClick={()=>handleNameClick(comment, comment.id)}
+                                                                    onClick={() => handleNameClick(comment, comment.id)}
                                                                 ></FontAwesomeIcon>
                                                             </div>
 

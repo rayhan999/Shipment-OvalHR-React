@@ -17,18 +17,20 @@ function App() {
     <>
       <Router>
         {/* <Toaster /> */}
-        <Suspense 
-        fallback={<LoadingSpinner />}
+        <Suspense
+          fallback={<LoadingSpinner />}
         >
           <Navbar></Navbar>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/shipments/:id">
-              <Details />
-            </Route>
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/shipments/:id">
+                <Details />
+              </Route>
+            </Switch>
+          </div>
         </Suspense>
       </Router>
     </>
