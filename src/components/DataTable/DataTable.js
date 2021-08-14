@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSortAmountDown, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 
 // json-server --watch data/db.json --port 8000
@@ -29,9 +30,17 @@ const DataTable = () => {
         { name: "Status", field: "status", sortable: true },
         // { name: "Action", field: "", sortable: false }
     ];
-
+    const [InputName, setInputName] = useState(null);
+    // const handleNameChange =  (e) => {
+    //      setInputName(e.target.value);
+    //     console.log(InputName);
+    // }
+    // const getComments = async () => {
+    //     return await axios.get(`${process.env.REACT_APP_API}`);
+    // }
     useEffect(() => {
-        axios.get(`http://localhost:8000/shipments`)
+        // getComments()
+        axios.get(`${process.env.REACT_APP_API}`)
             .then(res => {
                 setComments(res.data);
                 // console.log(res.data);
@@ -41,8 +50,28 @@ const DataTable = () => {
         if (totalItems > 0 && ItemsPerPage > 0) {
             setTotalPages(Math.ceil(totalItems / ItemsPerPage));
         }
+        // handleNameChange();
+        // console.log(InputName);
+    }, [comments, InputName, totalItems, ItemsPerPage]);
 
-    }, [totalItems, ItemsPerPage]);
+    const handleNameClick = async (comment,id) => {
+        // console.log(InputName);
+        // console.log(id);
+        const newData = { 
+            ...comment,
+            name: InputName
+        }
+        console.log("newdata",newData);
+       await axios.put(`${process.env.REACT_APP_API}/${id}`, newData)
+            .then(res => {
+                // setComments(res.data);
+                console.log(res.data);
+                setEditName(!EditName);
+
+            })
+            .catch(error => console.log(error.message))
+    }
+
     const commentsData = useMemo(() => {
         let computedComments = comments;
         // // console.log("search", search,computedComments);
@@ -105,7 +134,17 @@ const DataTable = () => {
         // onSorting(field, order);
         setSorting({ field, order })
     };
+    
 
+    // const handleNameChange = (e) => setInputName({
+    //     ...InputName,
+    //     [e.target.name]: e.target.value
+    //   })
+    // const { register, handleSubmit, watch, errors } = useForm();
+    // const handleSubmit = e => {
+    //     console.log(e);
+    //     e.preventDefault();
+    // }
     return (
         <div>
             <div className="">
@@ -179,16 +218,23 @@ const DataTable = () => {
                                             <td class="col-4">
                                                 {
                                                     EditName && IdforEditName === comment.id ?
+                                                        // <form onSubmit={handleSubmit}>
                                                         <div className="d-flex">
+
                                                             <div className="col-11 p-0">
-                                                                <input type="text" />
+                                                                <input type="text" name="name" onChange={e => setInputName(e.target.value)} />
                                                             </div>
                                                             <div className="col-1 p-0">
                                                                 <FontAwesomeIcon
                                                                     icon={faCheckCircle}
-                                                                    onClick={() => { setEditName(!EditName); setIdforEditName(comment.id) }}
-                                                                ></FontAwesomeIcon></div>
+                                                                    // type="submit"
+                                                                    // onClick={() => { setEditName(!EditName); setIdforEditName(comment.id) }}
+                                                                    onClick={()=>handleNameClick(comment, comment.id)}
+                                                                ></FontAwesomeIcon>
+                                                            </div>
+
                                                         </div>
+                                                        // </form>
                                                         :
                                                         <div className="d-flex p-0">
                                                             <div className="col-11 p-0">
