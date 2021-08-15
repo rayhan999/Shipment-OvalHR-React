@@ -21,7 +21,7 @@ function App() {
           fallback={<LoadingSpinner />}
         >
           <Navbar></Navbar>
-          <div className="container">
+          <div className="container mt-5 pt-5">
             <Switch>
               <Route exact path="/">
                 <Home />

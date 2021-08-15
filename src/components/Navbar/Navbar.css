@@ -1,8 +1,4 @@
-/* nav{
-    height: 70px;
-    position:sticky;
-    z-index:  999;
-} */
+
 .navbar-toggler{
     float: right;
 }
@@ -11,28 +7,20 @@
     background: linear-gradient(90deg, #808CBC 0%,#541ed3 100%)
 }
 
-.nav-link{
+.nav-link, .navbar-brand{
     font-weight: bold;
     margin-bottom: 3px;
+    color: white !important;
 }
-.nav-link:hover, .active{
-    background: none !important;
-    border-bottom: white 3px solid;
-    margin-bottom: 0;
+.nav-link:hover{
+    color: rgb(155, 151, 151) !important;
 }
-/* .active{
-    background: none !important;
-    border-bottom: #000000 3px solid;
-    margin-bottom: 0;
-} */
+
 
 .navbar-toggler{
     outline: none !important;
 }
-.nav-link{
-    color: white !important;
-    /* background-color: red !important; */
-}
+
 
 .login{
     background-color: #808CBC;

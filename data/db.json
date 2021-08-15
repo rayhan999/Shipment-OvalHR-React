@@ -30,7 +30,7 @@
     },
     {
       "id": "S1001",
-      "name": "oooooooooooooooo",
+      "name": "mahi",
       "cargo": [
         {
           "type": "Furniture",
@@ -236,7 +236,7 @@
     },
     {
       "id": "S1009",
-      "name": "Helmets",
+      "name": "Helmet",
       "cargo": [
         {
           "type": "HelmGoro",
