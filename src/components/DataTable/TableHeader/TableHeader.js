@@ -24,7 +24,7 @@ const TableHeader = ({ headers, onSorting }) => {
                             sortable ? onSortingChange(field) : null
                         }
                     >
-                        {name} &nbsp;
+                        {name} <br/>
                         {sortingField && sortingField === field ? (
                             <FontAwesomeIcon
                                 icon={

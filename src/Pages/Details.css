@@ -1,0 +1,41 @@
+
+.detailsTable table {
+    border-spacing: 0;
+  }
+  
+  .detailsTable td,
+  .detailsTable th {
+    padding: 0.5em;
+    
+  }
+  
+  .detailsTable th {
+    font-weight: bold;
+    /* text-align: center; */
+  }
+  
+  .detailsTable thead th {
+    background-color: #999;
+    color: white;
+  }
+  
+  
+@media only screen and (max-width: 40em) {
+    .detailsTable table{
+    text-align: unset;
+    }
+    .detailsTable thead th {
+        display: none;
+    }
+
+    .detailsTable td, th {
+        display: block;
+    }
+    .detailsTable td[data-th]:before  {
+        content: attr(data-th);
+    }
+    .detailsTable td > div {
+        float: right;
+      }
+
+}

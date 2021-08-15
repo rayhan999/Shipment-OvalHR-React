@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import PaginationComponent from "react-bootstrap/Pagination";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faSortAmountDown, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faSearch, faSortAmountDown, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
@@ -26,9 +26,11 @@ const DataTable = () => {
         { name: "Name", field: "name", sortable: true },
         { name: "Origin", field: "origin", sortable: true },
         { name: "Destination", field: "destination", sortable: true },
+        { name: "Mode", field: "mode", sortable: true },
+        { name: "Type", field: "type", sortable: true },
         { name: "Total", field: "total", sortable: true },
         { name: "Status", field: "status", sortable: true },
-        { name: "User ID", field: "userId", sortable: true }
+        { name: "UserID", field: "userId", sortable: true }
     ];
     useEffect(() => {
         // getComments()
@@ -68,7 +70,7 @@ const DataTable = () => {
             <div className="">
                 <h1 className="text-secondary mb-3">Shipments List</h1>
                 <div className="row w-100">
-                    <div className="col mb-3 col-12 text-center ">
+                    <div className="col mb-3 col-12 ">
                         <div className="d-flex justify-content-between mb-3">
                             <div className="">
                                 <span>Show  &nbsp;
@@ -83,17 +85,18 @@ const DataTable = () => {
                                     &nbsp; Entries</span>
 
                             </div>
-                            <div className="">
-                                <TopSearch
+                            <div className="topSearch">
+                               <TopSearch
                                     onSearch={value => {
                                         setSearch(value);
                                         setCurrentPage(1);
                                     }}
-                                />
+                                /> 
+                                <FontAwesomeIcon icon={faSearch} className="searchIcon"></FontAwesomeIcon>
                             </div>
                         </div>
-                        <div className="table-responsive">
-                            <table className="table table-striped table-bordered align-middle">
+                        <div className="shipmentTable table-responsive">
+                            <table className="table table-striped table-borderless ">
                                 <TableHeader
                                     headers={headers}
                                     onSorting={(field, order) =>

@@ -1,3 +1,79 @@
-.table thead th {
+/* .table thead th {
     vertical-align: unset;
+} */
+.shipmentTable table {
+    border-spacing: 0;
+    text-align: center;
+  }
+  
+  .shipmentTable td,
+  .shipmentTable th {
+    padding: 0.5em;
+    
+  }
+  
+  .shipmentTable th {
+    font-weight: bold;
+    /* text-align: center; */
+  }
+  
+  .shipmentTable thead th {
+    background-color: #999;
+    color: white;
+    vertical-align: unset;
+  }
+  
+  .checkIcon{
+      color:rgb(22, 218, 4);
+  }
+  .editIcon{
+      color: rgb(240, 224, 0);
+  }
+  .text-blue{
+      color: rgb(84, 84, 238);
+      background-color:rgb(210, 210, 248);
+      padding: 0 10px;
+  }
+  .text-yellow{
+      color: rgb(218, 203, 0);
+      background-color:rgb(255, 252, 81);
+      padding: 0 10px;
+  }
+  .text-green{
+      color: rgb(9, 196, 18);
+      background-color:rgb(101, 238, 110);
+      padding: 0 10px;
+  }
+  .topSearch{
+      position: relative;
+  }
+.searchIcon{
+    position: absolute; 
+    top:12px;
+    left: 10px;
+    color:#999
+}
+.searchInput{
+    padding-left: 35px;
+}
+
+@media only screen and (max-width: 40em) {
+    .shipmentTable table{
+    text-align: unset;
+    }
+    .shipmentTable thead th:not(:first-child) {
+        display: none;
+    }
+
+    .shipmentTable td, th {
+        display: block;
+    }
+    .shipmentTable td[data-th]:before  {
+        content: attr(data-th);
+        font-weight: bold;
+    }
+    .shipmentTable td > div {
+        float: right;
+      }
+
 }

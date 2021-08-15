@@ -10,7 +10,7 @@ const TopSearch = ({ onSearch }) => {
     return (
         <input
             type="text"
-            className="form-control"
+            className="form-control searchInput"
             style={{ width: "240px" }}
             placeholder="Search by ID"
             value={search}

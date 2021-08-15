@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faSortAmountDown, faSortAmountUp } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlane, faShip, faSortAmountDown, faSortAmountUp, faWater, faWind } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -39,7 +39,7 @@ const TableBody = ({commentsData}) => {
                     <th scope="row" >
                         {comment.id}
                     </th>
-                    <td >
+                    <td data-th="Name">
                         {
                             EditName && IdforEditName === comment.id ?
                                 // <form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const TableBody = ({commentsData}) => {
                                     <div className="col-11 p-0">
                                         <input type="text" name="name" onChange={e => setInputName(e.target.value)} />
                                     </div>
-                                    <div className="col-1 p-0">
+                                    <div className="col-1 p-0 checkIcon">
                                         <FontAwesomeIcon
                                             icon={faCheckCircle}
                                             onClick={() => handleNameClick(comment, comment.id)}
@@ -58,11 +58,11 @@ const TableBody = ({commentsData}) => {
                                 </div>
                                 // </form>
                                 :
-                                <div className="d-flex p-0">
+                                <div className="d-flex">
                                     <div className="col-11 p-0">
                                         <Link to={`shipments/${comment.id}`} style={{ textDecoration: "none" }}>{comment.name}</Link>
                                     </div>
-                                    <div className="col-1 p-0">
+                                    <div className="col-1 p-0 editIcon">
                                         <FontAwesomeIcon
                                             icon={faEdit}
                                             onClick={() => { setEditName(!EditName); setIdforEditName(comment.id) }}
@@ -73,18 +73,25 @@ const TableBody = ({commentsData}) => {
                         }
 
                     </td>
-                    <td>{comment.origin}</td>
-                    <td>{comment.destination}</td>
-                    <td>{comment.total}</td>
-                    <td>
-                        <span className=
-                            {comment.status === "NEW" ? "bg-primary text-blue p-2"
-                                : comment.status === "ACTIVE" ? "bg-warning text-yellow p-2"
-                                    : "bg-success text-green p-2"}>
+                    <td data-th="Origin"><div>{comment.origin}</div></td>
+                    <td data-th="Destination"><div>{comment.destination}</div></td>
+                    <td data-th="Mode"><div>
+                        {/* {comment.mode} */}
+                        <FontAwesomeIcon icon={
+                            comment.mode === 'air' ? faShip : faPlane
+                        }></FontAwesomeIcon>
+                        </div></td>
+                    <td data-th="Type"><div>{comment.type}</div></td>
+                    <td data-th="Total"><div>{comment.total}</div></td>
+                    <td data-th="Status">
+                        <div className=
+                            {comment.status === "NEW" ? "text-blue"
+                                : comment.status === "ACTIVE" ? "text-yellow"
+                                    : "text-green"}>
                             {comment.status}
-                        </span>
+                        </div>
                     </td>
-                    <td>{comment.userId}</td>
+                    <td data-th="UserID"><div>{comment.userId}</div></td>
                 </tr>
             ))}
         </tbody>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import './Details.css'
 
 const Details = () => {
     const { id } = useParams();
@@ -19,8 +20,8 @@ const Details = () => {
         }
     }, [])
     return (
-        <div className="table-responsive">
-            <table className="table table-striped table-bordered align-middle">
+        <div className="detailsTable table-responsive">
+            <table className="table table-bordered align-middle">
                 <thead className="text-center">
                     <tr>
                         <th scope="col" colSpan="2">Shipment Details</th>
@@ -53,9 +54,9 @@ const Details = () => {
                                     Value.cargo && Value.cargo.map(car => (
                                         <tbody>
                                             <tr>
-                                                <td>{car.type}</td>
-                                                <td>{car.description}</td>
-                                                <td>{car.volume}</td>
+                                                <td data-th="Type"><div>{car.type}</div></td>
+                                                <td data-th="Description"><div>{car.description}</div></td>
+                                                <td data-th="Volume"><div>{car.volume}</div></td>
                                             </tr>
                                         </tbody>
 
@@ -100,10 +101,10 @@ const Details = () => {
                                     Value.services && Value.services.map(service => (
                                         <tbody>
                                             <tr>
-                                                <td>{service.type}</td>
-                                                <td>
+                                                <td data-th="Type"><div>{service.type}</div></td>
+                                                <td data-th="Value"><div>
                                                     {service.value ? service.value : "x"}
-                                                </td>
+                                                </div></td>
                                             </tr>
                                         </tbody>
 
