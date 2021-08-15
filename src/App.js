@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import axios from "axios";
 import { createContext, lazy, Suspense, useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -37,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(App);

@@ -46,7 +46,7 @@ const TableBody = ({commentsData}) => {
                                 <div className="d-flex">
 
                                     <div className="col-11 p-0">
-                                        <input type="text" name="name" onChange={e => setInputName(e.target.value)} />
+                                        <input type="text" name="name" className="form-control" onChange={e => setInputName(e.target.value)} />
                                     </div>
                                     <div className="col-1 p-0 checkIcon">
                                         <FontAwesomeIcon
